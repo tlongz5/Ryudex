@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet"
+    android:paddingBottom="32dp">
+
+    <View
+        android:id="@+id/dragHandle"
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="12dp"
+        android:background="#E0E0E0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSettingsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Tùy chỉnh giao diện"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dragHandle" />
+
+    <TextView
+        android:id="@+id/tvModeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:text="Chế độ đọc"
+        android:textColor="#555555"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSettingsTitle" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleGroupMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
+        app:checkedButton="@id/btnVertical"
+        app:layout_constraintTop_toBottomOf="@+id/tvModeLabel"
+        app:singleSelection="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnVertical"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cuộn Dọc"
+            app:icon="@drawable/ic_down" /> <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnHorizontal"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Vuốt Ngang"
+        app:icon="@drawable/ic_bookmark" /> </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <TextView
+        android:id="@+id/tvThemeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:text="Màu nền"
+        android:textColor="#555555"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toggleGroupMode" />
+
+    <LinearLayout
+        android:id="@+id/layoutThemes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintTop_toBottomOf="@+id/tvThemeLabel">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/themeLight"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="24dp"
+            app:strokeColor="#E0E0E0"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/themeSepia"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="4dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="#F4ECD8"
+            app:cardCornerRadius="24dp"
+            app:strokeColor="@android:color/transparent"
+            app:strokeWidth="0dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/themeDark"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="#121212"
+            app:cardCornerRadius="24dp"
+            app:strokeColor="@android:color/transparent"
+            app:strokeWidth="0dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvBrightnessLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:text="Độ sáng"
+        android:textColor="#555555"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutThemes" />
+
+    <ImageView
+        android:id="@+id/icBrightnessLow"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/ic_down"
+        app:tint="#787878"
+        app:layout_constraintBottom_toBottomOf="@+id/sliderBrightness"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sliderBrightness" />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/sliderBrightness"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:value="50"
+        android:valueFrom="0"
+        android:valueTo="100"
+        app:layout_constraintEnd_toStartOf="@+id/icBrightnessHigh"
+        app:layout_constraintStart_toEndOf="@+id/icBrightnessLow"
+        app:layout_constraintTop_toBottomOf="@+id/tvBrightnessLabel"
+        app:thumbColor="@color/blue_medium"
+        app:trackColorActive="@color/blue_medium"
+        app:trackColorInactive="#E0E0E0" />
+
+    <ImageView
+        android:id="@+id/icBrightnessHigh"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/img_bgr"
+        app:tint="#787878"
+        app:layout_constraintBottom_toBottomOf="@+id/sliderBrightness"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sliderBrightness" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

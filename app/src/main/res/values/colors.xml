@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <color name="text_body_light">#79747E</color>
+    <color name="text_body_dark">#C4C0CC</color>
+    
+    <color name="text_title_light">@color/black</color>
+    <color name="text_title_dark">@color/white</color>
+
+    <color name="icon_light">#2563EB</color>
+    <color name="icon_dark">#FFFFFF</color>
+
+    <color name="blue_light">#DBEAFE</color>
+    <color name="blue_medium">#5D99EF</color>
+    <color name="blue">#2563EB</color>
+    <color name="blue_dark">#003F50</color>
+
+
+
+</resources>

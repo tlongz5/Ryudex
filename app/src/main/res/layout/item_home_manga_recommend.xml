@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/padding_horizontal_medium"
+    android:paddingVertical="@dimen/padding_vertical_small">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvRank"
+        android:layout_width="@dimen/margin_large"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="?attr/textBody"
+        android:textSize="@dimen/text_description"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="1"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvCover"
+        android:layout_width="@dimen/img_size_small"
+        android:layout_height="@dimen/img_size_small"
+        android:layout_marginStart="@dimen/margin_small2"
+        app:cardCornerRadius="@dimen/radius_small"
+        app:cardElevation="0dp"
+        app:strokeWidth="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvRank"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgCover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autoSizeTextType="uniform"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="@dimen/text_title_small"
+        android:textStyle="bold"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/mcvCover"
+        app:layout_constraintTop_toTopOf="@id/mcvCover"
+        tools:text="Title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAuthor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:drawablePadding="@dimen/margin_small"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:textColor="?attr/textBody"
+        android:textSize="@dimen/text_title_small"
+        app:drawableStartCompat="@drawable/ic_author"
+        app:drawableTint="?attr/textBody"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="Author" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:maxLines="1"
+        android:textColor="?attr/textBody"
+        android:textSize="@dimen/text_title_small"
+        app:layout_constraintBottom_toBottomOf="@id/mcvCover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvAuthor"
+        tools:text="Category" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

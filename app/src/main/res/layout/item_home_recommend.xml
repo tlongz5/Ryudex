@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/padding_horizontal_medium"
+    android:paddingVertical="@dimen/padding_vertical_small"
+    android:background="@color/white">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabMode="scrollable"
+        app:tabIndicator="@null"
+        android:background="@null"
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabBackground="@drawable/bg_tab_click"
+        app:tabSelectedTextColor="@color/white"
+        app:tabPaddingBottom="@dimen/padding_small"
+        app:tabPaddingStart="@dimen/padding_medium"
+        app:tabPaddingEnd="@dimen/padding_medium"
+        app:tabPaddingTop="@dimen/padding_small">
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_recommend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+        android:layout_marginTop="@dimen/margin_medium" />
+</androidx.constraintlayout.widget.ConstraintLayout>

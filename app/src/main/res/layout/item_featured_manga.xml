@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="8dp">
+
+    <TextView
+        android:id="@+id/tvRank"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:gravity="center"
+        android:text="1"
+        android:textSize="14sp"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp"
+        app:strokeWidth="0.5dp"
+        app:strokeColor="#DDDDDD"
+        app:rippleColor="?attr/colorControlHighlight">
+
+        <ImageView
+            android:id="@+id/imgManga"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_bgr"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="8dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thỏ Con Xin Hãy Ngoan Ngoãn~"
+            android:textSize="14sp"
+            android:textColor="#222"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trường học"
+                android:textSize="12sp"
+                android:textColor="#555555"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/bg_tag_2"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trường học"
+                android:textSize="12sp"
+                android:textColor="#555555"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/bg_tag_2"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trường học"
+                android:textSize="12sp"
+                android:textColor="#555555"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/bg_tag_2"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvStats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="475.0K"
+            android:textSize="12sp"
+            android:textColor="#888"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
