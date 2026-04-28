@@ -43,6 +43,7 @@ class MangaRepoImpl @Inject constructor(private val mangaApi: MangaApi) : MangaR
                 limit = limit,
                 offset = (0..1000).random(),
                 includedTags = includedTags,
+                order = "desc",
                 includes = Constant.requires
             )
             if (response.isSuccessful) {

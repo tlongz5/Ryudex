@@ -13,5 +13,6 @@ data class MangaCover(
     val author: Pair<String,String>, // id , name author
     val category: List<Pair<String,String>>,
     val lastChapter: String?,
-    val availableLanguages: List<String>
+    val availableLanguages: List<String>,
+    val year: Int?
 ): Parcelable

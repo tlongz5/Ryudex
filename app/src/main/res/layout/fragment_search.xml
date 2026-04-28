@@ -1,145 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/edtSearch"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_margin="16dp"
-        android:background="@drawable/custom_search_view"
-        android:hint="Search..."
-        android:paddingStart="16dp"
-        android:drawableStart="@android:drawable/ic_menu_search"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnSearch"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F5F5F5">
 
-    <TextView
-        android:id="@+id/btnSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:text="Search"
-        android:gravity="center"
-        android:paddingHorizontal="12dp"
-        android:textColor="#2196F3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edtSearch"/>
+        <EditText
+            android:id="@+id/edtSearch"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/custom_search_view"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:hint="Search..."
+            android:paddingStart="16dp"
+            app:layout_constraintEnd_toStartOf="@id/btnSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvHistoryTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="@dimen/margin_small2"
-        android:text="Search history"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtSearch" />
+        <TextView
+            android:id="@+id/btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:paddingHorizontal="12dp"
+            android:text="Search"
+            android:textColor="#2196F3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/edtSearch" />
 
-    <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/ic_delete"
-        app:layout_constraintBottom_toBottomOf="@+id/tvHistoryTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvHistoryTitle"
-        app:tint="@color/text_body_light" />
-
-    <TextView
-        android:id="@+id/tvEmptyHistory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No search history"
-        android:textColor="#888888"
-        android:textSize="14sp"
-        android:visibility="gone"
-
-        app:layout_constraintTop_toBottomOf="@id/tvHistoryTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"/>
-
-
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroupRecentSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_small"
-        app:chipSpacing="8dp"
-        app:layout_constraintStart_toStartOf="@+id/tvHistoryTitle"
-        app:layout_constraintTop_toBottomOf="@+id/tvHistoryTitle">
-
-        <com.google.android.material.chip.Chip
+        <TextView
+            android:id="@+id/tvHistoryTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:chipBackgroundColor="#EFEEEE"
-            app:chipStrokeWidth="0dp"
-            android:text="Isekai" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/margin_small2"
+            android:text="Search history"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtSearch" />
 
-        <com.google.android.material.chip.Chip
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintBottom_toBottomOf="@+id/tvHistoryTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvHistoryTitle"
+            app:tint="@color/text_body_light" />
+
+        <TextView
+            android:id="@+id/tvEmptyHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:chipBackgroundColor="#EFEEEE"
-            app:chipStrokeWidth="0dp"
-            android:text="Studio" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="No search history"
+            android:textColor="#888888"
 
-        <com.google.android.material.chip.Chip
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvHistoryTitle" />
+
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupRecentSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:chipBackgroundColor="#EFEEEE"
-            app:chipStrokeWidth="0dp"
-            android:text="Android Studio" />
+            android:layout_marginTop="@dimen/margin_small"
+            app:chipSpacing="8dp"
+            app:layout_constraintStart_toStartOf="@+id/tvHistoryTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvHistoryTitle">
 
-        <com.google.android.material.chip.Chip
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Isekai"
+                app:chipBackgroundColor="#EFEEEE"
+                app:chipStrokeWidth="0dp" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Studio"
+                app:chipBackgroundColor="#EFEEEE"
+                app:chipStrokeWidth="0dp" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Android Studio"
+                app:chipBackgroundColor="#EFEEEE"
+                app:chipStrokeWidth="0dp" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Isekai"
+                app:chipBackgroundColor="#EFEEEE"
+                app:chipStrokeWidth="0dp" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Studio"
+                app:chipBackgroundColor="#EFEEEE"
+                app:chipStrokeWidth="0dp" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Android Studio"
+                app:chipBackgroundColor="#EFEEEE"
+                app:chipStrokeWidth="0dp" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/tvTrending"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:chipBackgroundColor="#EFEEEE"
-            app:chipStrokeWidth="0dp"
-            android:text="Isekai" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/margin_small2"
+            android:text="Featured search"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroupRecentSearch" />
 
-        <com.google.android.material.chip.Chip
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvHot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTrending" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:chipBackgroundColor="#EFEEEE"
-            app:chipStrokeWidth="0dp"
-            android:text="Studio" />
+            app:layout_constraintBottom_toBottomOf="@+id/rcvHot"
+            app:layout_constraintEnd_toEndOf="@+id/rcvHot"
+            app:layout_constraintStart_toStartOf="@+id/rcvHot"
+            app:layout_constraintTop_toTopOf="@+id/rcvHot" />
 
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:chipBackgroundColor="#EFEEEE"
-            app:chipStrokeWidth="0dp"
-            android:text="Android Studio" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
 
-    </com.google.android.material.chip.ChipGroup>
-
-    <TextView
-        android:id="@+id/tvTrending"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Featured search"
-        android:layout_marginTop="@dimen/margin_small2"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipGroupRecentSearch" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvHot"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTrending" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>

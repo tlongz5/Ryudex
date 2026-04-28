@@ -5,19 +5,21 @@ import com.example.RyuDex.model.MangaItem
 
 fun MangaItem.toMangaCover(): MangaCover {
     val relationship = this.relationships
-    val img = relationship.findLast { it.type == "cover_art" }!!.attributes!!.fileName
-    val authorInfo = relationship.findLast { it.type == "author" }!!
+    val img = relationship.findLast { it.type == "cover_art" }?.attributes?.fileName
+    val authorInfo = relationship.findLast { it.type == "author" }
     return MangaCover(
         id = this.id,
         title = getDisplayText(this.attributes.title),
-        author = authorInfo.id to authorInfo.attributes!!.name,
-        img = if (img == null) null else Constant.getCover(this.id, img),
+        author = (authorInfo?.id ?: "Unknown") to
+                (authorInfo?.attributes?.name ?: "Unknown"),
+        img = img?.let { Constant.getCover(this.id, img) } ,
         category = this.attributes.tags.map { tagItem ->
             tagItem.id to getDisplayText(tagItem.attributes?.name)
         },
         description = getDisplayText(this.attributes.description),
         lastChapter = this.attributes.lastChapter,
-        availableLanguages = this.attributes.availableTranslatedLanguages.filterNotNull()
+        availableLanguages = this.attributes.availableTranslatedLanguages.filterNotNull(),
+        year = this.attributes.year
     )
 }
 
