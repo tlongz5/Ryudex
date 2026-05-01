@@ -6,9 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.RyuDex.databinding.ItemFeaturedTagBinding
 
 class TagFeaturedAdapter(
-    private val hotTag: List<Pair<String,String?>>,
+    private val hotTag: List<Pair<String?,String>>,
     private val onClickTag: (String?) -> Unit
 ): RecyclerView.Adapter<TagFeaturedAdapter.ViewHolder>() {
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -25,10 +26,11 @@ class TagFeaturedAdapter(
         holder: ViewHolder,
         position: Int
     ) {
-        holder.binding.tvTag.text = "#" + hotTag[position].first
+        holder.binding.tvTag.text = "#" + hotTag[position].second
         holder.binding.root.setOnClickListener {
-            onClickTag(hotTag[position].second)
+            onClickTag(hotTag[position].first)
         }
+
     }
 
     override fun getItemCount(): Int {
@@ -36,7 +38,6 @@ class TagFeaturedAdapter(
     }
 
     class ViewHolder(val binding: ItemFeaturedTagBinding) : RecyclerView.ViewHolder(binding.root)
-
 
 
 

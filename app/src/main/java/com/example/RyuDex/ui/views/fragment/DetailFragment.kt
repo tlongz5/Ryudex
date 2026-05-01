@@ -86,6 +86,10 @@ class DetailFragment : Fragment() {
         binding.tvAuthor.text = mangaCover.author.second
         binding.tvDescription.text = mangaCover.description
         binding.btnRead.setOnClickListener {
+            if(firstChapterByLanguage == null) {
+                Toast.makeText(this.context, "No chapter available", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToReaderFragment(
                 chapterId = firstChapterByLanguage!!.id,
                 mangaId = mangaCover.id

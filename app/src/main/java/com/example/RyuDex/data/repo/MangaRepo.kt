@@ -13,7 +13,9 @@ interface MangaRepo {
         title: String? = null,
         authors: List<String>? = null,
         includedTags: List<String>? = null,
-        order: String? = null,
+        orderFollowedCount: String? = null,
+        orderCreatedAt: String? = null,
+        orderYear: String? = null,
         includes: List<String>? = null
     ): Flow<PagingData<MangaCover>>
 

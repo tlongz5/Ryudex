@@ -33,10 +33,13 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.homeFragment,
-                R.id.FavouriteFragment,
-                R.id.HistoryFragment -> {
+                R.id.historyFragment -> {
                     binding.bottomNav.visibility = View.VISIBLE
                     binding.lnSearch.visibility = View.VISIBLE
+                }
+                R.id.categoryFragment -> {
+                    binding.bottomNav.visibility = View.VISIBLE
+                    binding.lnSearch.visibility = View.GONE
                 }
                 else -> {
                     binding.bottomNav.visibility = View.GONE

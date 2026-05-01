@@ -12,7 +12,7 @@ import com.example.RyuDex.model.MangaCover
 
 class FeaturedAdapter(
     private var hotMangas: List<MangaCover>,
-    private val hotTags: List<Pair<String,String?>>,
+    private val hotTags: List<Pair<String?,String>>,
     private val onClickManga: (MangaCover) -> Unit,
     private val onClickTag: (String?) -> Unit,
     private val onClickExplore: () -> Unit,

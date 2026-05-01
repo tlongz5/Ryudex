@@ -15,6 +15,9 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_margin="16dp"
+            android:maxLines="1"
+            android:inputType="text"
+            android:imeOptions="actionDone"
             android:background="@drawable/custom_search_view"
             android:drawableStart="@android:drawable/ic_menu_search"
             android:hint="Search..."
@@ -46,7 +49,7 @@
             app:layout_constraintTop_toBottomOf="@id/edtSearch" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/btnClear"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="16dp"
@@ -78,50 +81,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
             app:chipSpacing="8dp"
+            app:singleSelection="true"
             app:layout_constraintStart_toStartOf="@+id/tvHistoryTitle"
             app:layout_constraintTop_toBottomOf="@+id/tvHistoryTitle">
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Isekai"
-                app:chipBackgroundColor="#EFEEEE"
-                app:chipStrokeWidth="0dp" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Studio"
-                app:chipBackgroundColor="#EFEEEE"
-                app:chipStrokeWidth="0dp" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Android Studio"
-                app:chipBackgroundColor="#EFEEEE"
-                app:chipStrokeWidth="0dp" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Isekai"
-                app:chipBackgroundColor="#EFEEEE"
-                app:chipStrokeWidth="0dp" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Studio"
-                app:chipBackgroundColor="#EFEEEE"
-                app:chipStrokeWidth="0dp" />
-
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Android Studio"
-                app:chipBackgroundColor="#EFEEEE"
-                app:chipStrokeWidth="0dp" />
 
         </com.google.android.material.chip.ChipGroup>
 
@@ -130,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="@dimen/margin_small2"
+            android:layout_marginTop="@dimen/margin_large"
             android:text="Featured search"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"

@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.RyuDex.R
 import com.example.RyuDex.databinding.ItemFeaturedMangaBinding
 import com.example.RyuDex.model.MangaCover
 import kotlin.math.min
@@ -37,7 +38,8 @@ class MangaFeaturedAdapter(
         }
         Glide.with(holder.itemView.context)
             .load(hotList[position].img)
-            .fitCenter()
+            .placeholder(R.drawable.img_bgr)
+            .centerCrop()
             .into(holder.binding.imgManga)
 
         val tags = listOf(holder.binding.tag1,holder.binding.tag2,holder.binding.tag3)

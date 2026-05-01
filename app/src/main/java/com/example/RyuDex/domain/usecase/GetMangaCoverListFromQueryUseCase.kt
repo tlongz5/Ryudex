@@ -12,14 +12,18 @@ class GetMangaCoverListFromQueryUseCase @Inject constructor(private val mangaRep
         title: String? = null,
         authors: List<String>? = null,
         includedTags: List<String>? = null,
-        order: String? = null,
+        orderFollowedCount: String? = null,
+        orderCreatedAt: String? = null,
+        orderYear: String? = null,
         includes: List<String>? = null
     ): Flow<PagingData<MangaCover>> {
         return mangaRepo.getMangaCoverListFromQuery(
             title = title,
             authors = authors,
             includedTags = includedTags,
-            order = order,
+            orderFollowedCount = orderFollowedCount,
+            orderCreatedAt = orderCreatedAt,
+            orderYear = orderYear,
             includes = includes
         )
     }

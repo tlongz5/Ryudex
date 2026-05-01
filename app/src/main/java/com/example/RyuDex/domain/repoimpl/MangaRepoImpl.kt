@@ -19,7 +19,9 @@ class MangaRepoImpl @Inject constructor(private val mangaApi: MangaApi) : MangaR
         title: String? ,
         authors: List<String>?,
         includedTags: List<String>?,
-        order: String?,
+        orderFollowedCount: String?,
+        orderCreatedAt: String?,
+        orderYear: String?,
         includes: List<String>?
     ): Flow<PagingData<MangaCover>> {
         return Pager(
@@ -29,7 +31,9 @@ class MangaRepoImpl @Inject constructor(private val mangaApi: MangaApi) : MangaR
                 title = title,
                 authors = authors,
                 includedTags = includedTags,
-                order = order,
+                orderFollowedCount = orderFollowedCount,
+                orderCreatedAt = orderCreatedAt,
+                orderYear = orderYear,
                 includes = includes
             ) }
         ).flow
@@ -43,7 +47,7 @@ class MangaRepoImpl @Inject constructor(private val mangaApi: MangaApi) : MangaR
                 limit = limit,
                 offset = (0..1000).random(),
                 includedTags = includedTags,
-                order = "desc",
+                orderFollowedCount = "desc",
                 includes = Constant.requires
             )
             if (response.isSuccessful) {
@@ -59,7 +63,7 @@ class MangaRepoImpl @Inject constructor(private val mangaApi: MangaApi) : MangaR
             val response = mangaApi.getMangaListFromQuery(
                 limit = 10,
                 offset = (0..1000).random(),
-                order = "desc",
+                orderFollowedCount = "desc",
                 includes = Constant.requires
             )
 

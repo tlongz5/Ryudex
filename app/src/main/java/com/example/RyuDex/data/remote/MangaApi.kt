@@ -18,7 +18,9 @@ interface MangaApi {
         @Query("title") title:String? = null,
         @Query("authors[]") authors:List<String>? = null,
         @Query("includedTags[]") includedTags:List<String>? = null,
-        @Query("order[followedCount]") order:String? = null,
+        @Query("order[followedCount]") orderFollowedCount:String? = null,
+        @Query("order[createdAt]") orderCreatedAt:String? = null,
+        @Query("order[year]") orderYear:String? = null,
         @Query("includes[]") includes: List<String>? = null
     ) : Response<ApiResponse<MangaItem>>
 

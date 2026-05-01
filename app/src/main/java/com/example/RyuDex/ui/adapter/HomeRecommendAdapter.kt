@@ -41,8 +41,8 @@ class HomeRecommendAdapter(
     ) {
         Constant.POPULAR_TAGS.forEach {
             val newTab = holder.binding.tabLayout.newTab()
-            newTab.text = it.key
-            newTab.tag = it.value
+            newTab.text = it.value
+            newTab.tag = it.key
             holder.binding.tabLayout.addTab(newTab)
         }
 
