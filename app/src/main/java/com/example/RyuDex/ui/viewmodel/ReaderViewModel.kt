@@ -3,7 +3,6 @@ package com.example.RyuDex.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.RyuDex.domain.usecase.GetMangaImagesUseCase
-import com.example.RyuDex.model.ChapterImages
 import com.example.RyuDex.model.MangaPage
 import com.example.RyuDex.model.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel

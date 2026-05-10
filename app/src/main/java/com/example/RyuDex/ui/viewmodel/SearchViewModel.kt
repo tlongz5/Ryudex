@@ -2,10 +2,7 @@ package com.example.RyuDex.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.RyuDex.data.repo.MangaRepo
-import com.example.RyuDex.domain.usecase.GetMangaChapterListUseCase
 import com.example.RyuDex.domain.usecase.GetMangaListFromTagUseCase
-import com.example.RyuDex.model.MangaChapter
 import com.example.RyuDex.model.MangaCover
 import com.example.RyuDex.model.UiState
 import com.example.RyuDex.utils.toMangaCover

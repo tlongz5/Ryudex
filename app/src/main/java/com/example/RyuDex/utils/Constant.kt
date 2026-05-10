@@ -34,4 +34,76 @@ object Constant {
         "799c202e-7daa-44eb-9cf7-8a3c0441531e" to "Martial Arts",
         "69964a64-2f90-4d33-beeb-f3ed2875eb4c" to "Sports"
     )
+
+    val CONTENT_RATINGS = listOf(
+        "safe" to "Safe",
+        "suggestive" to "Suggestive"
+    )
+
+    val STATES = listOf(
+        "ongoing" to "Ongoing",
+        "completed" to "Completed",
+        "cancelled" to "Cancelled",
+        "hiatus" to "Paused"
+    )
+
+    val GROUP = listOf(
+        null to "All",
+        "genre" to "Genre",
+        "theme" to "Theme",
+        "format" to "Format",
+        "content" to "Content"
+    )
+
+    val LANGUAGES =  listOf(
+        null to "All",
+        "en" to "English",
+        "ja" to "Japanese",
+        "ja-ro" to "Japanese (Romanized)",
+        "ko" to "Korean",
+        "ko-ro" to "Korean (Romanized)",
+        "zh" to "Chinese",
+        "zh-ro" to "Chinese (Romanized)",
+        "zh-hk" to "Chinese (Hong Kong)",
+        "vi" to "Vietnamese",
+
+        "ar" to "Arabic",
+        "bg" to "Bulgarian",
+        "bn" to "Bengali",
+        "ca" to "Catalan",
+        "cs" to "Czech",
+        "da" to "Danish",
+        "de" to "German",
+        "el" to "Greek",
+        "es" to "Spanish",
+        "es-la" to "Spanish (Latin America)",
+        "fa" to "Persian",
+        "fi" to "Finnish",
+        "fil" to "Filipino",
+        "fr" to "French",
+        "he" to "Hebrew",
+        "hi" to "Hindi",
+        "hu" to "Hungarian",
+        "id" to "Indonesian",
+        "it" to "Italian",
+        "lt" to "Lithuanian",
+        "ms" to "Malay",
+        "mn" to "Mongolian",
+        "my" to "Burmese",
+        "nl" to "Dutch",
+        "no" to "Norwegian",
+        "pl" to "Polish",
+        "pt" to "Portuguese",
+        "pt-br" to "Portuguese (Brazil)",
+        "ro" to "Romanian",
+        "ru" to "Russian",
+        "sk" to "Slovak",
+        "sr" to "Serbian",
+        "sv" to "Swedish",
+        "th" to "Thai",
+        "tr" to "Turkish",
+        "uk" to "Ukrainian"
+    )
+
+
 }

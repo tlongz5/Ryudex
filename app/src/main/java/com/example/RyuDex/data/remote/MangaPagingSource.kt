@@ -3,9 +3,7 @@ package com.example.RyuDex.data.remote
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.RyuDex.model.ApiResponse
 import com.example.RyuDex.model.MangaCover
-import com.example.RyuDex.model.MangaItem
 import com.example.RyuDex.utils.Constant
 import com.example.RyuDex.utils.toMangaCover
 

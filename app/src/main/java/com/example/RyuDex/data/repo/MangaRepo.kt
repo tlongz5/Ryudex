@@ -1,12 +1,11 @@
 package com.example.RyuDex.data.repo
 
 import androidx.paging.PagingData
-import com.example.RyuDex.model.ChapterImages
-import com.example.RyuDex.model.MangaChapter
+import com.example.RyuDex.model.dto.image.ChapterImagesDTO
+import com.example.RyuDex.model.dto.chapter.MangaChapterDTO
 import com.example.RyuDex.model.MangaCover
-import com.example.RyuDex.model.MangaItem
+import com.example.RyuDex.model.dto.manga.MangaItemDTO
 import kotlinx.coroutines.flow.Flow
-import okhttp3.Response
 
 interface MangaRepo {
     fun getMangaCoverListFromQuery(
@@ -22,11 +21,11 @@ interface MangaRepo {
     suspend fun getMangaListFromTags(
         includedTags: List<String>? = null,
         limit:Int
-    ): Result<List<MangaItem>>
+    ): Result<List<MangaItemDTO>>
 
-    suspend fun getMangaBannerList() : Result<List<MangaItem>>
+    suspend fun getMangaBannerList() : Result<List<MangaItemDTO>>
 
-    suspend fun getMangaChapterList(id:String) : Result<List<MangaChapter>>
+    suspend fun getMangaChapterList(id:String) : Result<List<MangaChapterDTO>>
 
-    suspend fun getMangaImages(id:String) : Result<ChapterImages>
+    suspend fun getMangaImages(id:String) : Result<ChapterImagesDTO>
 }

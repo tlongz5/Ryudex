@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.R
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.RyuDex.data.local.clearSearchHistory
@@ -39,17 +40,17 @@ class SearchFragment : Fragment() {
         hotTags = Constant.POPULAR_TAGS.toList(),
         onClickManga = {
             // chuyển tới trang chi tiết truyện
-            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToDetailFragment(it))
+            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToDetailFragment(mangaCover = it))
         },
         onClickTag = {
             // chuyển tới trang danh sách truyện theo tag
-            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToCategoryFragment(it))
+            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToCategoryFragment(tagId = it))
         },
         onClickExplore = {
             findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToExploreFragment())
         },
         onClickSeeAll = {
-            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToCategoryFragment(null)
+            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToCategoryFragment(tagId = null)
             )
         }
     )

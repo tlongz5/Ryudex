@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.RyuDex.R
 import com.example.RyuDex.databinding.ItemReaderBinding
-import com.example.RyuDex.model.ChapterImages
 import com.example.RyuDex.model.MangaPage
 
 class ReaderAdapter : ListAdapter<MangaPage, ReaderAdapter.ViewHolder>(DiffUtil) {

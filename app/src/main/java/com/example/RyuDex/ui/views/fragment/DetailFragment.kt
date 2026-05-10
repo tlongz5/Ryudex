@@ -20,7 +20,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.example.RyuDex.R
 import com.example.RyuDex.databinding.FragmentDetailBinding
-import com.example.RyuDex.model.MangaChapter
+import com.example.RyuDex.model.dto.chapter.MangaChapterDTO
 import com.example.RyuDex.model.MangaCover
 import com.example.RyuDex.model.UiState
 import com.example.RyuDex.ui.adapter.RelatedMangaAdapter
@@ -51,10 +51,12 @@ class DetailFragment : Fragment() {
     }
 
     private val tagAdapter = TagAdapter {
-
+        findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToFilterMangaFragment(
+            tagId = it
+        ))
     }
 
-    private var allChapters = listOf<MangaChapter>()
+    private var allChapters = listOf<MangaChapterDTO>()
     private var firstChapterByLanguage = allChapters.firstOrNull()
 
     override fun onCreateView(
@@ -74,6 +76,17 @@ class DetailFragment : Fragment() {
     }
 
     private fun setupView(mangaCover: MangaCover) {
+        binding.toolbar.inflateMenu(R.menu.menu_detail)
+
+        binding.toolbar.setOnMenuItemClickListener { item ->
+            when(item.itemId){
+                R.id.download -> {
+                    // Noteeeeeeeeeeeeeeeeeeeeeeee
+                    true
+                }else -> false
+            }
+        }
+
         binding.rcvChapter.layoutManager = LinearLayoutManager(this.context)
         binding.rcvChapter.adapter = chaptersAdapter
         binding.rcvRelatedManga.adapter = relatedMangaAdapter
@@ -84,6 +97,11 @@ class DetailFragment : Fragment() {
 
         binding.tvTitle.text = mangaCover.title
         binding.tvAuthor.text = mangaCover.author.second
+        binding.tvAuthor.setOnClickListener {
+            findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToFilterMangaFragment(
+                authorId = mangaCover.author.first
+            ))
+        }
         binding.tvDescription.text = mangaCover.description
         binding.btnRead.setOnClickListener {
             if(firstChapterByLanguage == null) {
@@ -181,7 +199,6 @@ class DetailFragment : Fragment() {
                         }is UiState.Error ->{
                             Toast.makeText(this@DetailFragment.context,uiState.message,Toast.LENGTH_SHORT).show()
                         }
-
                     }
                 }
             }

@@ -3,11 +3,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.RyuDex.model.MangaChapter
+import com.example.RyuDex.model.dto.chapter.MangaChapterDTO
 
 class ChaptersAdapter(
-    private val onClickChapter: (MangaChapter) -> Unit
-) : ListAdapter<MangaChapter, ChaptersAdapter.ViewHolder>(DIFF_UTIL) {
+    private val onClickChapter: (MangaChapterDTO) -> Unit
+) : ListAdapter<MangaChapterDTO, ChaptersAdapter.ViewHolder>(DIFF_UTIL) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -30,16 +30,16 @@ class ChaptersAdapter(
     class ViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
 
     companion object{
-        val DIFF_UTIL = object : DiffUtil.ItemCallback<MangaChapter>(){
+        val DIFF_UTIL = object : DiffUtil.ItemCallback<MangaChapterDTO>(){
             override fun areItemsTheSame(
-                oldItem: MangaChapter,
-                newItem: MangaChapter
+                oldItem: MangaChapterDTO,
+                newItem: MangaChapterDTO
             ): Boolean {
                 return oldItem.id == newItem.id
             }
             override fun areContentsTheSame(
-                oldItem: MangaChapter,
-                newItem: MangaChapter
+                oldItem: MangaChapterDTO,
+                newItem: MangaChapterDTO
             ): Boolean {
                 return oldItem == newItem
             }

@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.RyuDex.domain.usecase.GetMangaChapterListUseCase
 import com.example.RyuDex.domain.usecase.GetMangaListFromTagUseCase
-import com.example.RyuDex.model.MangaChapter
-import com.example.RyuDex.model.MangaItem
+import com.example.RyuDex.model.dto.chapter.MangaChapterDTO
+import com.example.RyuDex.model.dto.manga.MangaItemDTO
 import com.example.RyuDex.model.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,21 +18,21 @@ class DetailViewModel @Inject constructor(
     private val getMangaChapterListUseCase: GetMangaChapterListUseCase,
     private val getMangaListFromTagsUseCase: GetMangaListFromTagUseCase
 ): ViewModel() {
-    private val _mangaChaptersState = MutableStateFlow<UiState<List<MangaChapter>>>(UiState.Loading)
-    val mangaChaptersState = _mangaChaptersState.asStateFlow()
+    private val _mangaChaptersStateDTO = MutableStateFlow<UiState<List<MangaChapterDTO>>>(UiState.Loading)
+    val mangaChaptersState = _mangaChaptersStateDTO.asStateFlow()
 
-    private val _relatedMangaState = MutableStateFlow<UiState<List<MangaItem>>>(UiState.Loading)
+    private val _relatedMangaState = MutableStateFlow<UiState<List<MangaItemDTO>>>(UiState.Loading)
     val relatedMangaState = _relatedMangaState.asStateFlow()
 
 
     fun getMangaChapters(id:String){
         viewModelScope.launch {
-            _mangaChaptersState.value = UiState.Loading
+            _mangaChaptersStateDTO.value = UiState.Loading
             val response = getMangaChapterListUseCase(id)
             response.onSuccess{ mangaChapters ->
-                _mangaChaptersState.value = UiState.Success(mangaChapters)
+                _mangaChaptersStateDTO.value = UiState.Success(mangaChapters)
             }.onFailure { exception ->
-                _mangaChaptersState.value = UiState.Error(exception?.message?:"Unknown Error")
+                _mangaChaptersStateDTO.value = UiState.Error(exception?.message?:"Unknown Error")
             }
         }
     }

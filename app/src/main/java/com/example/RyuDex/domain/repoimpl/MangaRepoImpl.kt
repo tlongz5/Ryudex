@@ -6,10 +6,10 @@ import androidx.paging.PagingData
 import com.example.RyuDex.data.remote.MangaApi
 import com.example.RyuDex.data.remote.MangaPagingSource
 import com.example.RyuDex.data.repo.MangaRepo
-import com.example.RyuDex.model.ChapterImages
-import com.example.RyuDex.model.MangaChapter
+import com.example.RyuDex.model.dto.image.ChapterImagesDTO
+import com.example.RyuDex.model.dto.chapter.MangaChapterDTO
 import com.example.RyuDex.model.MangaCover
-import com.example.RyuDex.model.MangaItem
+import com.example.RyuDex.model.dto.manga.MangaItemDTO
 import com.example.RyuDex.utils.Constant
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -41,7 +41,7 @@ class MangaRepoImpl @Inject constructor(private val mangaApi: MangaApi) : MangaR
 
     override suspend fun getMangaListFromTags(
         includedTags: List<String>?,
-        limit:Int): Result<List<MangaItem>> {
+        limit:Int): Result<List<MangaItemDTO>> {
         return runCatching {
             val response = mangaApi.getMangaListFromQuery(
                 limit = limit,
@@ -58,7 +58,7 @@ class MangaRepoImpl @Inject constructor(private val mangaApi: MangaApi) : MangaR
         }
     }
 
-    override suspend fun getMangaBannerList(): Result<List<MangaItem>> {
+    override suspend fun getMangaBannerList(): Result<List<MangaItemDTO>> {
         return runCatching {
             val response = mangaApi.getMangaListFromQuery(
                 limit = 10,
@@ -73,7 +73,7 @@ class MangaRepoImpl @Inject constructor(private val mangaApi: MangaApi) : MangaR
         }
     }
 
-    override suspend fun getMangaChapterList(id:String): Result<List<MangaChapter>> {
+    override suspend fun getMangaChapterList(id:String): Result<List<MangaChapterDTO>> {
         return runCatching {
             val response = mangaApi.getMangaChapterList(
                 mangaId = id,
@@ -87,7 +87,7 @@ class MangaRepoImpl @Inject constructor(private val mangaApi: MangaApi) : MangaR
         }
     }
 
-    override suspend fun getMangaImages(chapterId:String): Result<ChapterImages> {
+    override suspend fun getMangaImages(chapterId:String): Result<ChapterImagesDTO> {
         return runCatching {
             val response = mangaApi.getChapterImages(chapterId)
             if(response.isSuccessful){

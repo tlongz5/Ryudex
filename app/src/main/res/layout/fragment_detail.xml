@@ -8,8 +8,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".ui.views.fragment.DetailFragment">
+
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:navigationIcon="@drawable/ic_back" />
 
         <ImageView
             android:id="@+id/imgBanner"
@@ -102,38 +108,33 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_small2"
                 android:orientation="horizontal">
 
-                <com.google.android.material.button.MaterialButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnRead"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Read"
+                    android:layout_gravity="center"
                     android:textColor="@color/white"
+                    android:background="@drawable/custom_search_view"
                     android:textSize="@dimen/text_title_medium"
-                    app:cornerRadius="20dp"
                     app:backgroundTint="@color/blue_medium"
                     android:paddingHorizontal="32dp"
                     android:paddingVertical="@dimen/padding_vertical_medium" />
 
-                <ImageView
-                    android:id="@+id/btnSave"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                <Spinner
+                    android:id="@+id/languageSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_small2"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:paddingVertical="8dp"
+                    android:paddingHorizontal="10dp"
+                    android:background="@drawable/bg_tag" />
 
             </LinearLayout>
-
-            <Spinner
-                android:id="@+id/languageSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
-                android:paddingVertical="@dimen/padding_small"
-                android:paddingHorizontal="@dimen/padding_horizontal_small"
-                android:background="@drawable/bg_tag" />
         </LinearLayout>
 
         <LinearLayout

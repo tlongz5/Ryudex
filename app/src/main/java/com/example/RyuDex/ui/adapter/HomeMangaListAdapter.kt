@@ -2,15 +2,12 @@ package com.example.RyuDex.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingData
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
 import com.example.RyuDex.databinding.ItemHomeMangaListBinding
 import com.example.RyuDex.model.MangaCover
-import com.example.RyuDex.model.MangaItem
 
 class HomeMangaListAdapter(private val callbackClickMangaCover: (MangaCover) -> Unit) : PagingDataAdapter<MangaCover, HomeMangaListAdapter.ViewHolder>(DIFF_CALLBACK) {
     class ViewHolder(val binding: ItemHomeMangaListBinding) : RecyclerView.ViewHolder(binding.root)

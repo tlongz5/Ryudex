@@ -95,6 +95,10 @@ class FilterMangaFragment : Fragment() {
         binding.tvTitle.text = args.titleRelated ?: args.authorId ?: args.tagId ?: ""
         binding.rcvManga.adapter = filterMangaAdapter
         binding.rcvManga.layoutManager = GridLayoutManager(this.context, 2)
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     override fun onDestroyView() {

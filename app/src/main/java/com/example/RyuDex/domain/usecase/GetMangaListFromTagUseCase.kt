@@ -1,7 +1,7 @@
 package com.example.RyuDex.domain.usecase
 
 import com.example.RyuDex.data.repo.MangaRepo
-import com.example.RyuDex.model.MangaItem
+import com.example.RyuDex.model.dto.manga.MangaItemDTO
 import javax.inject.Inject
 
 class GetMangaListFromTagUseCase @Inject constructor(
@@ -10,7 +10,7 @@ class GetMangaListFromTagUseCase @Inject constructor(
     suspend operator fun invoke(
         includedTags: List<String>? = null,
         limit:Int
-    ): Result<List<MangaItem>>{
+    ): Result<List<MangaItemDTO>>{
         return mangaRepo.getMangaListFromTags(includedTags,limit)
     }
 }

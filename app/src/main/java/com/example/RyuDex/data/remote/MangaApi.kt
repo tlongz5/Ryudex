@@ -1,11 +1,11 @@
 package com.example.RyuDex.data.remote
 
 import com.example.RyuDex.model.ApiResponse
-import com.example.RyuDex.model.ChapterImages
-import com.example.RyuDex.model.MangaChapter
-import com.example.RyuDex.model.MangaItem
+import com.example.RyuDex.model.dto.image.ChapterImagesDTO
+import com.example.RyuDex.model.dto.chapter.MangaChapterDTO
+import com.example.RyuDex.model.dto.manga.MangaItemDTO
+import com.example.RyuDex.model.dto.manga.TagItemDTO
 import retrofit2.Response
-import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -22,7 +22,7 @@ interface MangaApi {
         @Query("order[createdAt]") orderCreatedAt:String? = null,
         @Query("order[year]") orderYear:String? = null,
         @Query("includes[]") includes: List<String>? = null
-    ) : Response<ApiResponse<MangaItem>>
+    ) : Response<ApiResponse<MangaItemDTO>>
 
     @GET("manga/{id}/feed")
     suspend fun getMangaChapterList(
@@ -30,10 +30,13 @@ interface MangaApi {
         @Query("limit") limit:Int,
         @Query("offset") offset:Int,
         @Query("order[chapter]") order: String = "asc"
-    ) : Response<ApiResponse<MangaChapter>>
+    ) : Response<ApiResponse<MangaChapterDTO>>
 
     @GET("at-home/server/{chapterId}")
     suspend fun getChapterImages(
         @Path("chapterId") chapterId:String
-    ) : Response<ChapterImages>
+    ) : Response<ChapterImagesDTO>
+
+    @GET("manga/tag")
+    suspend fun getTags(): Response<ApiResponse<TagItemDTO>>
 }

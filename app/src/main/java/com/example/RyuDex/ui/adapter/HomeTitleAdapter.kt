@@ -19,7 +19,6 @@ class HomeTitleAdapter(private val title: String) :
         )
         return ViewHolder(binding)
     }
-
     override fun onBindViewHolder(
         holder: ViewHolder,
         position: Int

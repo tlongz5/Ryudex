@@ -1,6 +1,6 @@
-package com.example.RyuDex.model
+package com.example.RyuDex.model.dto.chapter
 
-data class ChapterAttributes(
+data class ChapterAttributesDTO(
     val chapter: String?,
     val title: String?,
     val translatedLanguage: String?,

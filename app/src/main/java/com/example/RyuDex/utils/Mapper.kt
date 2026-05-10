@@ -1,9 +1,9 @@
 package com.example.RyuDex.utils
 
 import com.example.RyuDex.model.MangaCover
-import com.example.RyuDex.model.MangaItem
+import com.example.RyuDex.model.dto.manga.MangaItemDTO
 
-fun MangaItem.toMangaCover(): MangaCover {
+fun MangaItemDTO.toMangaCover(): MangaCover {
     val relationship = this.relationships
     val img = relationship.findLast { it.type == "cover_art" }?.attributes?.fileName
     val authorInfo = relationship.findLast { it.type == "author" }
