@@ -10,13 +10,6 @@
         android:background="@color/white"
         tools:context=".ui.views.fragment.DetailFragment">
 
-        <Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            android:navigationIcon="@drawable/ic_back" />
-
         <ImageView
             android:id="@+id/imgBanner"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +25,13 @@
             android:background="#20000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:navigationIcon="@drawable/ic_back" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/mcvCover"

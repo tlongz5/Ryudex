@@ -7,6 +7,10 @@ import android.view.View
 import com.google.android.material.chip.Chip
 
 object ChipFactory {
+    private const val BLUE = "#5D99EF"
+    private const val BLUE_LIGHT = "#EAF3FF"
+    private const val BLUE_STROKE = "#A9C9F5"
+    private const val TEXT_DARK = "#1E3A5F"
     fun createChip(context: Context, text: String): Chip {
         return Chip(context).apply {
             this.text = text
@@ -19,10 +23,10 @@ object ChipFactory {
             chipCornerRadius = 12f
             chipStrokeWidth = 1f
 
-            setTextColor(Color.parseColor("#202020"))
+            setTextColor(Color.parseColor(TEXT_DARK))
 
             chipStrokeColor =
-                ColorStateList.valueOf(Color.parseColor("#8C7B82"))
+                ColorStateList.valueOf(Color.parseColor(BLUE_STROKE))
 
             chipBackgroundColor = ColorStateList(
                 arrayOf(
@@ -30,8 +34,8 @@ object ChipFactory {
                     intArrayOf()
                 ),
                 intArrayOf(
-                    Color.parseColor("#D81B60"), // checked
-                    Color.parseColor("#F8DCE7")  // unchecked
+                    Color.parseColor(BLUE), // checked
+                    Color.parseColor(BLUE_LIGHT)  // unchecked
                 )
             )
 
@@ -43,12 +47,12 @@ object ChipFactory {
                     ),
                     intArrayOf(
                         Color.WHITE,
-                        Color.parseColor("#202020")
+                        Color.parseColor(TEXT_DARK)
                     )
                 )
             )
 
-            rippleColor = ColorStateList.valueOf(Color.parseColor("#33D81B60"))
+            rippleColor = ColorStateList.valueOf(Color.parseColor("#334A90E2"))
 
             setEnsureMinTouchTargetSize(false)
         }

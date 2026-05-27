@@ -2,11 +2,15 @@ package com.example.RyuDex.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.RyuDex.domain.usecase.CancelDownloadMangaUseCase
 import com.example.RyuDex.domain.usecase.GetMangaChapterListUseCase
 import com.example.RyuDex.domain.usecase.GetMangaListFromTagUseCase
+import com.example.RyuDex.domain.usecase.RequestDownloadMangaUseCase
+import com.example.RyuDex.model.MangaCover
 import com.example.RyuDex.model.dto.chapter.MangaChapterDTO
 import com.example.RyuDex.model.dto.manga.MangaItemDTO
 import com.example.RyuDex.model.UiState
+import com.example.RyuDex.model.entity.MangaChapterEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,7 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(
     private val getMangaChapterListUseCase: GetMangaChapterListUseCase,
-    private val getMangaListFromTagsUseCase: GetMangaListFromTagUseCase
+    private val getMangaListFromTagsUseCase: GetMangaListFromTagUseCase,
+    private val requestDownloadMangaUseCase: RequestDownloadMangaUseCase
 ): ViewModel() {
     private val _mangaChaptersStateDTO = MutableStateFlow<UiState<List<MangaChapterDTO>>>(UiState.Loading)
     val mangaChaptersState = _mangaChaptersStateDTO.asStateFlow()
@@ -48,4 +53,11 @@ class DetailViewModel @Inject constructor(
             }
         }
     }
+
+    fun requestDownloadManga(mangaCover: MangaCover, mangaToDownload: List<MangaChapterDTO>) {
+        viewModelScope.launch {
+            requestDownloadMangaUseCase(mangaCover, mangaToDownload)
+        }
+    }
+
 }

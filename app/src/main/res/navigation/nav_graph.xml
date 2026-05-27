@@ -38,12 +38,15 @@
         android:name="com.example.RyuDex.ui.views.fragment.ReaderFragment"
         android:label="ReaderFragment" >
         <argument
-            android:name="chapterId"
-            app:argType="string" />
+            android:name="chapter"
+            app:argType="com.example.RyuDex.model.dto.chapter.MangaChapterDTO" />
 
         <argument
-            android:name="mangaId"
-            app:argType="string" />
+            android:name="mangaCover"
+            app:argType="com.example.RyuDex.model.MangaCover" />
+        <action
+            android:id="@+id/action_readerFragment_self"
+            app:destination="@id/readerFragment" />
     </fragment>
 
     <fragment

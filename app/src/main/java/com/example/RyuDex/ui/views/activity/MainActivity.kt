@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                     binding.bottomNav.visibility = View.VISIBLE
                     binding.lnSearch.visibility = View.VISIBLE
                 }
-                R.id.categoryFragment -> {
+                R.id.categoryFragment,R.id.exploreFragment -> {
                     binding.bottomNav.visibility = View.VISIBLE
                     binding.lnSearch.visibility = View.GONE
                 }

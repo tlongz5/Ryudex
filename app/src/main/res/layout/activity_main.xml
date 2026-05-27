@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_search"
             android:text="Search Manga"
-            android:textColor="?attr/icon"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_description"
             android:layout_marginStart="@dimen/margin_small"
             android:drawablePadding="@dimen/margin_medium2"/>
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_setting"
-            app:tint="?attr/icon"
+            app:tint="@color/black"
             android:layout_marginEnd="@dimen/margin_small"
             android:layout_gravity="end"/>
     </LinearLayout>
@@ -59,13 +59,17 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:menu="@menu/bottom_nav_menu"
-        app:itemIconTint="@color/black"
+        android:layout_height="64dp"
         android:background="@drawable/custom_nav"
+        app:menu="@menu/bottom_nav_menu"
+        android:elevation="12dp"
+        app:itemRippleColor="@android:color/transparent"
+        app:itemIconTint="@color/text_body_light"
+        app:itemIconSize="30dp"
+        app:itemActiveIndicatorStyle="@style/Animation.Design.BottomSheetDialog"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginEnd="@dimen/margin_large"
-        android:layout_marginBottom="@dimen/margin_medium2"/>
+        android:layout_marginBottom="24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

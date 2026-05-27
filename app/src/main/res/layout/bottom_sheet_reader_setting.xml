@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:paddingStart="20dp"
+    android:paddingTop="12dp"
+    android:paddingEnd="20dp"
+    android:paddingBottom="28dp">
+
+    <View
+        android:id="@+id/dragHandle"
+        android:layout_width="44dp"
+        android:layout_height="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSettingsTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="Reader Settings"
+        android:textColor="#171717"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/btnCloseSettings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dragHandle" />
+
+    <ImageView
+        android:id="@+id/btnCloseSettings"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:contentDescription="Close"
+        android:padding="10dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintBottom_toBottomOf="@id/tvSettingsTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvSettingsTitle"
+        app:tint="#8A8A8A" />
+
+    <TextView
+        android:id="@+id/tvSettingsSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Customize your reading experience"
+        android:textColor="#777777"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvSettingsTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvSettingsTitle" />
+
+    <TextView
+        android:id="@+id/tvModeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="Reading Mode"
+        android:textColor="#222222"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSettingsSubtitle" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleGroupMode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:checkedButton="@id/btnVertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvModeLabel"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnVertical"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Vertical"
+            android:textAllCaps="false"
+            android:textColor="#222222"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/ic_vertical"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconTint="#222222"
+            app:strokeColor="#D8D8D8" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnHorizontal"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Horizontal"
+            android:textAllCaps="false"
+            android:textColor="#222222"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/ic_horizontal"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconTint="#222222"
+            app:strokeColor="#D8D8D8" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <TextView
+        android:id="@+id/tvThemeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="Background"
+        android:textColor="#222222"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toggleGroupMode" />
+
+
+    <LinearLayout
+        android:id="@+id/layoutThemes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintTop_toBottomOf="@+id/tvThemeLabel">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/themeLight"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="24dp"
+            app:strokeColor="#E0E0E0"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/themeSepia"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="4dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="#F4ECD8"
+            app:cardCornerRadius="24dp"
+            app:strokeColor="@android:color/transparent"
+            app:strokeWidth="0dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/themeDark"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="#121212"
+            app:cardCornerRadius="24dp"
+            app:strokeColor="@android:color/transparent"
+            app:strokeWidth="0dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvBrightnessLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="Brightness"
+        android:textColor="#222222"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutThemes" />
+
+    <TextView
+        android:id="@+id/tvBrightnessValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50%"
+        android:textColor="#777777"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvBrightnessLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvBrightnessLabel" />
+
+    <ImageView
+        android:id="@+id/icBrightnessLow"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/ic_minus"
+        app:layout_constraintBottom_toBottomOf="@id/sliderBrightness"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/sliderBrightness"
+        app:tint="#8A8A8A" />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/sliderBrightness"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
+        android:value="50"
+        android:valueFrom="0"
+        android:valueTo="100"
+        app:layout_constraintEnd_toStartOf="@id/icBrightnessHigh"
+        app:layout_constraintStart_toEndOf="@id/icBrightnessLow"
+        app:layout_constraintTop_toBottomOf="@id/tvBrightnessLabel"
+        app:thumbColor="@color/blue_medium"
+        app:trackColorActive="@color/blue_medium"
+        app:trackColorInactive="#E4E4E4" />
+
+    <ImageView
+        android:id="@+id/icBrightnessHigh"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/ic_plus"
+        app:layout_constraintBottom_toBottomOf="@id/sliderBrightness"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/sliderBrightness"
+        app:tint="#8A8A8A" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

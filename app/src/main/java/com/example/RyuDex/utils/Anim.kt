@@ -30,3 +30,19 @@ fun View.startPulseAnim(): ObjectAnimator{
     })
     return anim
 }
+
+fun View.fadeInAnim(){
+    return this.animate()
+        .translationY(0f)
+        .alpha(1f)
+        .setDuration(300)
+        .start()
+}
+
+fun View.fadeOutAnim(){
+    return this.animate()
+        .translationY(this.height.toFloat() - 40f)
+        .alpha(0f)
+        .setDuration(300)
+        .start()
+}

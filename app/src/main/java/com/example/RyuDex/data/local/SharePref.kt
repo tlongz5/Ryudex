@@ -9,7 +9,7 @@ fun saveSearchHistory(context: Context, keyword:String){
     val editor = searchHistory.edit()
 
     val searchList = searchHistory.getString(SEARCH_HISTORY,"")!!
-        .split(",").toMutableList()
+        .split(",").filter { it.isNotBlank() }.toMutableList()
 
     searchList.remove(keyword)
     searchList.add(0,keyword)

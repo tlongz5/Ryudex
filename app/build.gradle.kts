@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("kotlin-kapt")
+    alias(libs.plugins.ksp)
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
     alias(libs.plugins.androidx.navigation.safeargs.kotlin)
@@ -57,18 +57,24 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
     implementation("com.google.dagger:hilt-android:2.51.1")
+    ksp("com.google.dagger:hilt-android-compiler:2.51.1")
+
+    implementation("androidx.hilt:hilt-work:1.2.0")
+    ksp("androidx.hilt:hilt-compiler:1.2.0")
+
     implementation(libs.androidx.viewpager2)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
     implementation("androidx.paging:paging-runtime:3.2.1")
 
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
-
+    ksp("androidx.room:room-compiler:2.6.1")
     // hỗ trợ thu phóng ảnh
     implementation("com.otaliastudios:zoomlayout:1.9.0")
+
+    // hỗ trợ work manager
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
 
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.core.ktx)

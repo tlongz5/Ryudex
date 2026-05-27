@@ -8,9 +8,6 @@ object Constant {
     // lấy thông tin tác giả và banner truyện
     val requires = listOf("author","cover_art")
 
-    fun getCover(mangaId:String,fileName:String) : String{
-        return "https://uploads.mangadex.org/covers/${mangaId}/${fileName}"
-    }
 
     val POPULAR_TAGS = mapOf(
         null to "Hot",

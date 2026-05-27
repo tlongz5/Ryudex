@@ -16,6 +16,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.work.WorkInfo
+import androidx.work.WorkManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.example.RyuDex.R
@@ -27,6 +29,7 @@ import com.example.RyuDex.ui.adapter.RelatedMangaAdapter
 import com.example.RyuDex.ui.adapter.TagAdapter
 import com.example.RyuDex.ui.viewmodel.DetailViewModel
 import com.example.RyuDex.utils.toMangaCover
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.coroutines.launch
@@ -45,8 +48,8 @@ class DetailFragment : Fragment() {
     }
     private val chaptersAdapter = ChaptersAdapter{
         findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToReaderFragment(
-            chapterId = it.id,
-            mangaId = safeArgs.mangaCover.id
+            chapter = it, // get chapter picked
+            mangaCover = safeArgs.mangaCover
         ))
     }
 
@@ -56,8 +59,11 @@ class DetailFragment : Fragment() {
         ))
     }
 
+    private var chaptersByLanguage = listOf<MangaChapterDTO>()
     private var allChapters = listOf<MangaChapterDTO>()
     private var firstChapterByLanguage = allChapters.firstOrNull()
+
+    private val dialogDownloadManga = DialogDownloadManga()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,12 +82,18 @@ class DetailFragment : Fragment() {
     }
 
     private fun setupView(mangaCover: MangaCover) {
+        dialogDownloadManga.mangaName = mangaCover.title.toString()
         binding.toolbar.inflateMenu(R.menu.menu_detail)
 
         binding.toolbar.setOnMenuItemClickListener { item ->
             when(item.itemId){
                 R.id.download -> {
-                    // Noteeeeeeeeeeeeeeeeeeeeeeee
+                    dialogDownloadManga.onClickDownload = { chaptersToDownload, queryByLanguage ->
+                        if (queryByLanguage){
+                            requestDownloadManga(mangaCover,chaptersByLanguage.take(chaptersToDownload))
+                        }else requestDownloadManga(mangaCover,allChapters)
+                    }
+                    dialogDownloadManga.show(parentFragmentManager,"dialogDownloadManga")
                     true
                 }else -> false
             }
@@ -109,8 +121,8 @@ class DetailFragment : Fragment() {
                 return@setOnClickListener
             }
             findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToReaderFragment(
-                chapterId = firstChapterByLanguage!!.id,
-                mangaId = mangaCover.id
+                chapter = firstChapterByLanguage!!,
+                mangaCover = mangaCover
             ))
         }
 
@@ -127,7 +139,7 @@ class DetailFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                val chaptersByLanguage = allChapters.filter { it.attributes.translatedLanguage == mangaCover.availableLanguages[position] }
+                chaptersByLanguage = allChapters.filter { it.attributes.translatedLanguage == mangaCover.availableLanguages[position] }
                 firstChapterByLanguage = chaptersByLanguage.firstOrNull()
                 chaptersAdapter.submitList(chaptersByLanguage)
             }
@@ -160,6 +172,11 @@ class DetailFragment : Fragment() {
             .into(binding.imgCover)
     }
 
+    private fun requestDownloadManga(mangaCover: MangaCover, mangaToDownload: List<MangaChapterDTO>) {
+        detailViewModel.requestDownloadManga(mangaCover, mangaToDownload)
+        Snackbar.make(binding.root, "Download starting...", Snackbar.LENGTH_SHORT).show()
+    }
+
     private fun setupViewModel(mangaCover: MangaCover) {
         detailViewModel.getMangaChapters(mangaCover.id)
         detailViewModel.getRelatedManga(mangaCover.category.shuffled().mapNotNull { it.first }.take(2))
@@ -177,6 +194,9 @@ class DetailFragment : Fragment() {
                             firstChapterByLanguage = chaptersByLanguage.firstOrNull()
                             chaptersAdapter.submitList(chaptersByLanguage)
                             binding.languageSpinner.setSelection(0)
+
+                            dialogDownloadManga.chapters = chapters.size
+                            dialogDownloadManga.chaptersByLanguage = chaptersByLanguage.size
                         }is UiState.Error ->{
 
                         }
@@ -195,7 +215,6 @@ class DetailFragment : Fragment() {
                         }is UiState.Success ->{
                             val relatedMangas = uiState.data.map { mangaItem -> mangaItem.toMangaCover() }
                             relatedMangaAdapter.submitList(relatedMangas)
-
                         }is UiState.Error ->{
                             Toast.makeText(this@DetailFragment.context,uiState.message,Toast.LENGTH_SHORT).show()
                         }

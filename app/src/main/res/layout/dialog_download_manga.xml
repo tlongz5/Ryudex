@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="28dp"
+    app:cardElevation="8dp"
+    app:strokeWidth="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/tvDialogTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Download Manga"
+            android:textColor="#1D1B20"
+            android:textSize="24sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/tvMangaName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="Manga Name"
+            android:textColor="#49454F"
+            android:textSize="14sp" />
+
+        <RadioGroup
+            android:id="@+id/rgDownloadOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checkedButton="@+id/rbWholeManga">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbWholeManga"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="All Chapters\n131 chapters"
+                android:textColor="#1D1B20"
+                app:buttonTint="@color/blue_medium" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbTranslatedChapters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="All translated chapters ( English )\n47 chapters"
+                android:textColor="#1D1B20"
+                app:buttonTint="@color/blue_medium" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbCustomChapters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:drawableEnd="@android:drawable/arrow_down_float"
+                android:text="Download the first 5 chapters\nEnglish"
+                android:textColor="#1D1B20"
+                app:buttonTint="@color/blue_medium" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutChapterSelection"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone"
+                android:hint="Số lượng chương">
+
+                <AutoCompleteTextView
+                    android:id="@+id/tvDropdownCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:text="5 chương" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancel"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Hủy"
+                android:textColor="@color/blue_medium" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnStartDownload"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bắt đầu tải"
+                android:textColor="@color/blue_medium" />
+        </LinearLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

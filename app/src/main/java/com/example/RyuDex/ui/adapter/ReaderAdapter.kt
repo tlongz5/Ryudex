@@ -9,7 +9,9 @@ import com.example.RyuDex.R
 import com.example.RyuDex.databinding.ItemReaderBinding
 import com.example.RyuDex.model.MangaPage
 
-class ReaderAdapter : ListAdapter<MangaPage, ReaderAdapter.ViewHolder>(DiffUtil) {
+class ReaderAdapter(
+    private val getPagePosition: (Int) -> Unit
+) : ListAdapter<MangaPage, ReaderAdapter.ViewHolder>(DiffUtil) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -32,6 +34,8 @@ class ReaderAdapter : ListAdapter<MangaPage, ReaderAdapter.ViewHolder>(DiffUtil)
             .load(imgLink)
             .placeholder(R.drawable.img_bgr)
             .into(holder.binding.imgContent)
+
+        getPagePosition(position)
     }
 
     class ViewHolder(val binding: ItemReaderBinding) : RecyclerView.ViewHolder(binding.root)

@@ -1,7 +1,9 @@
 package com.example.RyuDex.di
 
-import com.example.RyuDex.data.repo.MangaRepo
-import com.example.RyuDex.domain.repoimpl.MangaRepoImpl
+import com.example.RyuDex.data.repo.LocalMangaRepo
+import com.example.RyuDex.data.repo.RemoteMangaRepo
+import com.example.RyuDex.domain.repoimpl.LocalMangaRepoImpl
+import com.example.RyuDex.domain.repoimpl.RemoteMangaRepoImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,6 +15,9 @@ import javax.inject.Singleton
 abstract class RepoModule {
     @Binds
     @Singleton
-    abstract fun provideMangaRepo(mangaRepoImpl: MangaRepoImpl): MangaRepo
+    abstract fun provideRemoteMangaRepo(remoteMangaRepoImpl: RemoteMangaRepoImpl): RemoteMangaRepo
 
+    @Binds
+    @Singleton
+    abstract fun provideLocalMangaRepo(localMangaRepoImpl: LocalMangaRepoImpl): LocalMangaRepo
 }

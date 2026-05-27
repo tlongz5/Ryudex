@@ -15,6 +15,9 @@ class MangaPagingSource(
     private val orderFollowedCount: String? = null,
     private val orderCreatedAt: String? = null,
     private val orderYear: String? = null,
+    private val status:List<String>? = null,
+    private val contentRating:List<String>? = null,
+    private val availableTranslatedLanguage:List<String>? = null,
     private val includes: List<String>? = null
 ): PagingSource<Int, MangaCover>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MangaCover> {
@@ -30,6 +33,9 @@ class MangaPagingSource(
                 orderFollowedCount = orderFollowedCount,
                 orderCreatedAt = orderCreatedAt,
                 orderYear = orderYear,
+                status = status,
+                contentRating = contentRating,
+                availableTranslatedLanguage = availableTranslatedLanguage,
                 includes = Constant.requires // NOTEEEEEEEEEEEEEE
             )
             Log.d("Api","Get Api Success")
