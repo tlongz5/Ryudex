@@ -5,16 +5,17 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.RyuDex.data.remote.MangaApi
 import com.example.RyuDex.data.remote.MangaPagingSource
-import com.example.RyuDex.data.repo.MangaRepo
+import com.example.RyuDex.data.repo.RemoteMangaRepo
 import com.example.RyuDex.model.dto.image.ChapterImagesDTO
 import com.example.RyuDex.model.dto.chapter.MangaChapterDTO
 import com.example.RyuDex.model.MangaCover
 import com.example.RyuDex.model.dto.manga.MangaItemDTO
+import com.example.RyuDex.model.dto.manga.TagItemDTO
 import com.example.RyuDex.utils.Constant
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class MangaRepoImpl @Inject constructor(private val mangaApi: MangaApi) : MangaRepo{
+class RemoteMangaRepoImpl @Inject constructor(private val mangaApi: MangaApi) : RemoteMangaRepo{
     override fun getMangaCoverListFromQuery(
         title: String? ,
         authors: List<String>?,
@@ -22,6 +23,9 @@ class MangaRepoImpl @Inject constructor(private val mangaApi: MangaApi) : MangaR
         orderFollowedCount: String?,
         orderCreatedAt: String?,
         orderYear: String?,
+        status:List<String>?,
+        contentRating:List<String>?,
+        availableTranslatedLanguage:List<String>?,
         includes: List<String>?
     ): Flow<PagingData<MangaCover>> {
         return Pager(
@@ -34,6 +38,9 @@ class MangaRepoImpl @Inject constructor(private val mangaApi: MangaApi) : MangaR
                 orderFollowedCount = orderFollowedCount,
                 orderCreatedAt = orderCreatedAt,
                 orderYear = orderYear,
+                status = status,
+                contentRating = contentRating,
+                availableTranslatedLanguage = availableTranslatedLanguage,
                 includes = includes
             ) }
         ).flow
@@ -75,15 +82,21 @@ class MangaRepoImpl @Inject constructor(private val mangaApi: MangaApi) : MangaR
 
     override suspend fun getMangaChapterList(id:String): Result<List<MangaChapterDTO>> {
         return runCatching {
-            val response = mangaApi.getMangaChapterList(
-                mangaId = id,
-                limit = 500,
-                offset = 0,
-            )
-
-            if(response.isSuccessful){
-                response.body()?.data?:emptyList()
-            }else throw Exception(response.errorBody()?.string()?:"Error Connect, Try Again Later")
+            val list = mutableListOf<MangaChapterDTO>()
+            val limit = 500
+            for(i in 0..20){
+                val response = mangaApi.getMangaChapterList(
+                    mangaId = id,
+                    limit = limit,
+                    offset = i * 500, // 500 chapter per request
+                )
+                if(response.isSuccessful){
+                    val data = response.body()?.data?: emptyList()
+                    list+=data
+                    if(data.size<limit) break
+                }else throw Exception(response.errorBody()?.string()?:"Error Connect, Try Again Later")
+            }
+            list
         }
     }
 
@@ -92,6 +105,15 @@ class MangaRepoImpl @Inject constructor(private val mangaApi: MangaApi) : MangaR
             val response = mangaApi.getChapterImages(chapterId)
             if(response.isSuccessful){
                 response.body()!!
+            }else throw Exception(response.errorBody()?.string()?:"Error Connect, Try Again Later")
+        }
+    }
+
+    override suspend fun getTags(): Result<List<TagItemDTO>> {
+        return runCatching {
+            val response = mangaApi.getTags()
+            if (response.isSuccessful){
+                response.body()?.data?:emptyList()
             }else throw Exception(response.errorBody()?.string()?:"Error Connect, Try Again Later")
         }
     }

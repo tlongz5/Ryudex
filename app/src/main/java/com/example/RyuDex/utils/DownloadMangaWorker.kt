@@ -1,6 +1,7 @@
 package com.example.RyuDex.utils
 
 import android.content.Context
+import android.util.Log
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
@@ -32,11 +33,13 @@ class DownloadMangaWorker @AssistedInject constructor(
         val urlCover = inputData.getString("URL_COVER") ?: return@withContext Result.failure()
 
         return@withContext try {
+            Log.d("TAG", "Running download")
             val localPathMangaCover = downloadAndSaveImageCover(applicationContext,mangaApi,urlCover, mangaId)
             if(localPathMangaCover != null){
                 mangaDao.updateImageLocal(mangaId,localPathMangaCover)
             }else return@withContext Result.retry()
 
+            Log.d("TAG", "Run download 1")
             urls.forEachIndexed { index, url ->
                 val localPath = downloadAndSaveImage(
                     context = applicationContext,
@@ -61,8 +64,10 @@ class DownloadMangaWorker @AssistedInject constructor(
                     "MANGA_ID" to mangaId,
                     "CHAPTER_ID" to chapterId))
             }
+            Log.d("TAG", "Run download success")
             Result.success()
         }catch (e:Exception){
+            Log.d("TAG", "Run download fail")
             Result.retry()
         }
     }

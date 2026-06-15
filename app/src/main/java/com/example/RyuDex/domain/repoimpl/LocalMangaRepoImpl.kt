@@ -1,10 +1,13 @@
 package com.example.RyuDex.domain.repoimpl
 
 import android.content.Context
+import android.util.Log
 import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkInfo
 import androidx.work.WorkManager
+import kotlinx.coroutines.guava.await
 import androidx.work.workDataOf
 import com.example.RyuDex.data.local.dao.ChapterImageDao
 import com.example.RyuDex.data.local.dao.MangaChapterDao
@@ -34,8 +37,10 @@ class LocalMangaRepoImpl @Inject constructor(
         mangaDao.insertManga(mangaCover.toMangaCoverEntity())
         mangaToDownload.forEach { chapter ->
             mangaChapterDao.insertMangaChapter(chapter.toMangaChapterEntity(mangaCover.id))
-
+            // Lỗi
+            Log.d("TAG", "insertMangaChapter")
             val result = remoteMangaRepo.getMangaImages(chapter.id)
+            Log.d("TAG", "getMangaImages")
             if(result.isSuccess){
                 val chapterImages = result.getOrThrow()
                 val inputData = workDataOf(
@@ -49,6 +54,7 @@ class LocalMangaRepoImpl @Inject constructor(
                         )}.toTypedArray(),
                     "URL_COVER" to mangaCover.img
                 )
+                Log.d("TAG", "build inputData")
 
                 val constraints = Constraints.Builder()
                     .setRequiresStorageNotLow(true)
@@ -62,12 +68,22 @@ class LocalMangaRepoImpl @Inject constructor(
                     .addTag("manga_download") // để cancel tất cả download khi cần
                     .build()
 
+                Log.d("TAG", "build requestDownloadManga")
+
                 workManager.enqueueUniqueWork(
                     chapter.id,
                     androidx.work.ExistingWorkPolicy.KEEP,
                     request
                 )
-            }
+
+                Log.d("TAG","running requestDownloadManga")
+            }else Log.d("TAG", "requestDownloadManga fail ${result.exceptionOrNull()?.message}")
+        }
+    }
+
+    override suspend fun getAllDownloadingManga(): Result<List<WorkInfo>> {
+        return runCatching {
+            workManager.getWorkInfosByTag("manga_download").await()
         }
     }
 

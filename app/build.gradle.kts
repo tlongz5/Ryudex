@@ -75,6 +75,7 @@ dependencies {
 
     // hỗ trợ work manager
     implementation("androidx.work:work-runtime-ktx:2.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-guava:1.8.1")
 
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.core.ktx)

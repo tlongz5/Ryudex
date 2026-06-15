@@ -10,7 +10,8 @@ import com.google.android.material.chip.Chip
 class ExploreFeatureAdapter(
     private val genres: List<Pair<String?, String>>,
     private val callbackShowMore: () -> Unit,
-    private val callbackClickTag: (List<String>) -> Unit
+    private val callbackClickTag: (List<String>) -> Unit,
+    private val callbackDownload: () -> Unit
 ) : RecyclerView.Adapter<ExploreFeatureAdapter.ViewHolder>() {
 
     private val tagsPicked = mutableListOf<String>()
@@ -22,6 +23,10 @@ class ExploreFeatureAdapter(
             renderGenres()
             binding.tvShowMore.setOnClickListener {
                 callbackShowMore()
+            }
+
+            binding.tvDownload.setOnClickListener {
+                callbackDownload()
             }
         }
 

@@ -50,6 +50,10 @@ class ExploreFragment : Fragment() {
         callbackClickTag = { tags ->
             getDataFromQuery(null,null,null,tags)
             selectedTags = tags
+
+        },
+        callbackDownload = {
+            findNavController().navigate(ExploreFragmentDirections.actionExploreFragmentToDownloadDetailFragment())
         }
     )
 
