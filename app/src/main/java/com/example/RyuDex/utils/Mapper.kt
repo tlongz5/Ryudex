@@ -3,8 +3,10 @@ package com.example.RyuDex.utils
 import com.example.RyuDex.model.MangaCover
 import com.example.RyuDex.model.dto.chapter.MangaChapterDTO
 import com.example.RyuDex.model.dto.manga.MangaItemDTO
+import com.example.RyuDex.model.entity.DownloadStatus
 import com.example.RyuDex.model.entity.MangaChapterEntity
 import com.example.RyuDex.model.entity.MangaCoverEntity
+import com.example.RyuDex.model.entity.MangaWithChapters
 
 fun MangaItemDTO.toMangaCover(): MangaCover {
     val relationship = this.relationships
@@ -33,9 +35,10 @@ fun MangaChapterDTO.toMangaChapterEntity(mangaId: String): MangaChapterEntity {
         title = this.attributes.title,
         chapter = this.attributes.chapter,
         createdAt = this.attributes.createdAt,
-        pages = this.attributes.pages,
-        localPath = null,
-        translatedLanguage = this.attributes.translatedLanguage
+        totalPages = this.attributes.pages,
+        downloadedPages = 0,
+        translatedLanguage = this.attributes.translatedLanguage,
+        downloadStatus = DownloadStatus.PENDING
     )
 }
 
@@ -50,9 +53,21 @@ fun MangaCover.toMangaCoverEntity(): MangaCoverEntity {
         lastChapter = this.lastChapter,
         availableLanguages = this.availableLanguages,
         year = this.year,
-        imgLocal = null,
-        downloadStatus = "QUEUED",
-        progress = 0
+        imgLocal = null
+    )
+}
+
+fun MangaWithChapters.toMangaCover(): MangaCover {
+    return MangaCover(
+        id = this.manga.id,
+        title = this.manga.title,
+        author = this.manga.author,
+        img = this.manga.imgLocal,
+        category = this.manga.category,
+        description = this.manga.description,
+        lastChapter = this.manga.lastChapter,
+        availableLanguages = this.manga.availableLanguages,
+        year = this.manga.year
     )
 }
 

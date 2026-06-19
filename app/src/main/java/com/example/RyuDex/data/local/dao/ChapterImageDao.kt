@@ -14,4 +14,7 @@ interface ChapterImageDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertChapterImages(chapterImages: ChapterImageEntity)
 
+    @Query("SELECT * FROM chapter_images WHERE chapterId = :chapterId AND pageIndex = :pageIndex")
+    suspend fun getChapterImage(chapterId: String, pageIndex: Int): ChapterImageEntity?
+
 }

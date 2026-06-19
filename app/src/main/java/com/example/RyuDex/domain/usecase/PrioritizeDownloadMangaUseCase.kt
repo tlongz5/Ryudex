@@ -1,13 +1,12 @@
 package com.example.RyuDex.domain.usecase
 
 import com.example.RyuDex.data.repo.LocalMangaRepo
-import com.example.RyuDex.model.entity.MangaChapterEntity
 import javax.inject.Inject
 
-class CancelDownloadMangaUseCase @Inject constructor(
+class PrioritizeDownloadMangaUseCase @Inject constructor(
     private val localMangaRepo: LocalMangaRepo
 ) {
     suspend operator fun invoke(mangaId: String) {
-        localMangaRepo.cancelDownloadManga(mangaId)
+        localMangaRepo.prioritizeDownloadManga(mangaId)
     }
 }

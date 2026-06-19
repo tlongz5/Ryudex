@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.RyuDex.databinding.ItemReaderChapterBinding
 import com.example.RyuDex.model.dto.chapter.MangaChapterDTO
-import com.example.RyuDex.utils.Constant.LANGUAGES
+import com.example.RyuDex.utils.Constant.CODE_TO_LANGUAGE
 
 class ReaderChapterAdapter(
     private val onClickChapter: (MangaChapterDTO) -> Unit
@@ -35,7 +35,7 @@ class ReaderChapterAdapter(
             val item = getItem(position)
             holder.binding.tvChapterName.text = "Chap " + item.attributes.chapter + if(item.attributes.title == null) "" else ": "+ item.attributes.title
             holder.binding.tvChapterSubInfo.text = item.attributes.translatedLanguage?.let { languageCode ->
-                LANGUAGES.find { it.first == languageCode }?.second + " • "
+                CODE_TO_LANGUAGE[languageCode] + " • "
             } + item.attributes.pages?.let { totalPage->
                 "${totalPage} pages"
             }

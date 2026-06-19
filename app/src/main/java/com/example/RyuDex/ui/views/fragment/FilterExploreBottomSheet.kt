@@ -84,7 +84,7 @@ class FilterExploreBottomSheet: BottomSheetDialogFragment() {
             binding.chipGroupGenres.addView(chip)
         }
 
-        val language = Constant.LANGUAGES.map { it.second }
+        val language = Constant.CODE_TO_LANGUAGE.values.toList()
 
         val adapter = ArrayAdapter(
             requireContext(),
@@ -94,8 +94,9 @@ class FilterExploreBottomSheet: BottomSheetDialogFragment() {
 
         binding.autoLanguage.setAdapter(adapter)
 
-        binding.autoLanguage.setOnItemClickListener { _, _, position, _ ->
-            languages = Constant.LANGUAGES[position].first
+        binding.autoLanguage.setOnItemClickListener { parent, _, position, _ ->
+            val selectedName = parent.getItemAtPosition(position).toString()
+            languages = Constant.LANGUAGE_TO_CODE[selectedName]
         }
     }
 

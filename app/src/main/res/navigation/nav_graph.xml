@@ -128,6 +128,10 @@
     <fragment
         android:id="@+id/downloadDetailFragment"
         android:name="com.example.RyuDex.ui.views.fragment.DownloadDetailFragment"
-        android:label="DownloadDetailFragment" />
+        android:label="DownloadDetailFragment" >
+        <action
+            android:id="@+id/action_downloadDetailFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 
 </navigation>

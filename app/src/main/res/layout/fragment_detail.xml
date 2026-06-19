@@ -128,11 +128,11 @@
                     android:id="@+id/languageSpinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_small2"
                     android:layout_gravity="center"
-                    android:paddingVertical="8dp"
+                    android:layout_marginStart="@dimen/margin_small2"
+                    android:background="@drawable/bg_tag"
                     android:paddingHorizontal="10dp"
-                    android:background="@drawable/bg_tag" />
+                    android:paddingVertical="8dp" />
 
             </LinearLayout>
         </LinearLayout>

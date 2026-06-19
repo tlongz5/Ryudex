@@ -16,6 +16,5 @@ data class MangaCoverEntity(
     val availableLanguages: List<String>,
     val year: Int?,
 
-    val downloadStatus: String,
-    val progress: Int,
+    val downloadStatus: DownloadStatus = DownloadStatus.PENDING
 )

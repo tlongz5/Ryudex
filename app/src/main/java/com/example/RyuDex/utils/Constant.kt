@@ -52,7 +52,7 @@ object Constant {
         "content" to "Content"
     )
 
-    val LANGUAGES =  listOf(
+    val CODE_TO_LANGUAGE =  mapOf(
         null to "All",
         "en" to "English",
         "ja" to "Japanese",
@@ -101,6 +101,8 @@ object Constant {
         "tr" to "Turkish",
         "uk" to "Ukrainian"
     )
+
+    val LANGUAGE_TO_CODE = CODE_TO_LANGUAGE.entries.associate { (key, value) -> value to key }
 
 
 }

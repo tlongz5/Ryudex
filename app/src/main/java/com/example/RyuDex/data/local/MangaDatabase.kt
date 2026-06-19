@@ -9,9 +9,10 @@ import com.example.RyuDex.data.local.dao.MangaDao
 import com.example.RyuDex.model.entity.ChapterImageEntity
 import com.example.RyuDex.model.entity.MangaChapterEntity
 import com.example.RyuDex.model.entity.MangaCoverEntity
+import com.example.RyuDex.model.entity.MangaWithChapters
 import com.example.RyuDex.utils.Converters
 
-@Database(entities = [MangaCoverEntity::class, MangaChapterEntity::class, ChapterImageEntity::class], version = 1)
+@Database(entities = [MangaCoverEntity::class, MangaChapterEntity::class, ChapterImageEntity::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class MangaDatabase : RoomDatabase() {
     abstract fun mangaDao(): MangaDao

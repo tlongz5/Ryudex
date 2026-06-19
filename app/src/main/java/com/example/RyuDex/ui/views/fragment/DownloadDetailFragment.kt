@@ -10,11 +10,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.RyuDex.R
 import com.example.RyuDex.databinding.FragmentDownloadDetailBinding
 import com.example.RyuDex.model.UiState
 import com.example.RyuDex.ui.adapter.DownloadDetailAdapter
 import com.example.RyuDex.ui.viewmodel.DownloadDetailViewModel
+import com.example.RyuDex.utils.toMangaCover
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -27,7 +30,20 @@ class DownloadDetailFragment : Fragment() {
 
     private val viewModel: DownloadDetailViewModel by viewModels()
 
-    private val adapter = DownloadDetailAdapter()
+    private val adapter = DownloadDetailAdapter(
+        onItemClicked = {
+            findNavController().navigate(DownloadDetailFragmentDirections.actionDownloadDetailFragmentToDetailFragment(it.toMangaCover()))
+        },
+        onContinueClicked = {
+            viewModel.prioritizeDownloadManga(it.manga.id)
+        },
+        onPauseClicked = {
+            viewModel.pauseDownloadManga(it.manga.id)
+        },
+        onCancelClicked = {
+            viewModel.cancelDownloadManga(it.manga.id)
+        }
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +62,7 @@ class DownloadDetailFragment : Fragment() {
 
     private fun setupView() {
         binding.rvQueuedDownloads.adapter = adapter
+        binding.rvQueuedDownloads.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun setupViewModel() {
@@ -72,23 +89,13 @@ class DownloadDetailFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.mangaCoversState.collectLatest { uiState ->
-                    when (uiState) {
-                        is UiState.Loading -> {
-
-                        }
-
-                        is UiState.Success -> {
-                            adapter.submitList(uiState.data)
-                        }
-                        is UiState.Error -> {
-                            Toast.makeText(requireContext(), uiState.message, Toast.LENGTH_SHORT).show()
-                        }
-                    }
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getMangaWithChapters.collectLatest { mangaWithChapters ->
+                    adapter.submitList(mangaWithChapters)
                 }
             }
         }
+
     }
 
     override fun onDestroyView() {

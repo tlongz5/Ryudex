@@ -16,8 +16,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.work.WorkInfo
-import androidx.work.WorkManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.example.RyuDex.R
@@ -28,6 +26,7 @@ import com.example.RyuDex.model.UiState
 import com.example.RyuDex.ui.adapter.RelatedMangaAdapter
 import com.example.RyuDex.ui.adapter.TagAdapter
 import com.example.RyuDex.ui.viewmodel.DetailViewModel
+import com.example.RyuDex.utils.Constant.CODE_TO_LANGUAGE
 import com.example.RyuDex.utils.toMangaCover
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -129,7 +128,7 @@ class DetailFragment : Fragment() {
         val adapter = ArrayAdapter(
             requireContext(),
             R.layout.item_dropdown_language,
-            mangaCover.availableLanguages
+            mangaCover.availableLanguages.map { CODE_TO_LANGUAGE[it] }
         )
         binding.languageSpinner.adapter = adapter
         binding.languageSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -142,12 +141,14 @@ class DetailFragment : Fragment() {
                 chaptersByLanguage = allChapters.filter { it.attributes.translatedLanguage == mangaCover.availableLanguages[position] }
                 firstChapterByLanguage = chaptersByLanguage.firstOrNull()
                 chaptersAdapter.submitList(chaptersByLanguage)
+
+                dialogDownloadManga.chaptersByLanguage = chaptersByLanguage.size
+                dialogDownloadManga.mangaLanguage = CODE_TO_LANGUAGE[mangaCover.availableLanguages[position]]?: "Unknown"
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
             }
-
         }
 
         binding.tvMore.setOnClickListener {
@@ -190,13 +191,14 @@ class DetailFragment : Fragment() {
                         }is UiState.Success ->{
                             val chapters = uiState.data
                             allChapters = chapters
-                            val chaptersByLanguage = allChapters.filter { it.attributes.translatedLanguage == mangaCover.availableLanguages[0] }
+                            chaptersByLanguage = allChapters.filter { it.attributes.translatedLanguage == mangaCover.availableLanguages[0] }
                             firstChapterByLanguage = chaptersByLanguage.firstOrNull()
                             chaptersAdapter.submitList(chaptersByLanguage)
                             binding.languageSpinner.setSelection(0)
 
                             dialogDownloadManga.chapters = chapters.size
                             dialogDownloadManga.chaptersByLanguage = chaptersByLanguage.size
+                            dialogDownloadManga.mangaLanguage = CODE_TO_LANGUAGE[mangaCover.availableLanguages[0]]?: "Unknown"
                         }is UiState.Error ->{
 
                         }

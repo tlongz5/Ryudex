@@ -10,8 +10,9 @@ data class MangaChapterEntity (
     val chapter: String?,
     val title: String?,
     val translatedLanguage: String?,
-    val pages: Int?,
+    val totalPages: Int?,
     val createdAt: String?,
 
-    val localPath: String?
+    val downloadedPages: Int = 0,
+    val downloadStatus: DownloadStatus = DownloadStatus.PENDING
 )
