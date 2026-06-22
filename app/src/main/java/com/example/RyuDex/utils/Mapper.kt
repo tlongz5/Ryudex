@@ -1,8 +1,11 @@
 package com.example.RyuDex.utils
 
 import com.example.RyuDex.model.MangaCover
+import com.example.RyuDex.model.MangaPage
+import com.example.RyuDex.model.dto.chapter.ChapterAttributesDTO
 import com.example.RyuDex.model.dto.chapter.MangaChapterDTO
 import com.example.RyuDex.model.dto.manga.MangaItemDTO
+import com.example.RyuDex.model.entity.ChapterImageEntity
 import com.example.RyuDex.model.entity.DownloadStatus
 import com.example.RyuDex.model.entity.MangaChapterEntity
 import com.example.RyuDex.model.entity.MangaCoverEntity
@@ -42,6 +45,20 @@ fun MangaChapterDTO.toMangaChapterEntity(mangaId: String): MangaChapterEntity {
     )
 }
 
+fun MangaChapterEntity.toMangaChapterDTO(): MangaChapterDTO {
+    val attributes = ChapterAttributesDTO(
+        title = this.title,
+        chapter = this.chapter,
+        createdAt = this.createdAt,
+        pages = this.totalPages,
+        translatedLanguage = this.translatedLanguage
+    )
+    return MangaChapterDTO(
+            id = this.chapterId,
+            attributes = attributes
+    )
+}
+
 fun MangaCover.toMangaCoverEntity(): MangaCoverEntity {
     return MangaCoverEntity(
         id = this.id,
@@ -54,6 +71,14 @@ fun MangaCover.toMangaCoverEntity(): MangaCoverEntity {
         availableLanguages = this.availableLanguages,
         year = this.year,
         imgLocal = null
+    )
+}
+
+fun ChapterImageEntity.toMangaPage(): MangaPage {
+    return MangaPage(
+        chapterId = this.chapterId,
+        pageIdx = this.pageIndex,
+        imageUrl = this.localPath
     )
 }
 

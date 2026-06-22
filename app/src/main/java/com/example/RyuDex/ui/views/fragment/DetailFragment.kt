@@ -98,6 +98,10 @@ class DetailFragment : Fragment() {
             }
         }
 
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
         binding.rcvChapter.layoutManager = LinearLayoutManager(this.context)
         binding.rcvChapter.adapter = chaptersAdapter
         binding.rcvRelatedManga.adapter = relatedMangaAdapter
@@ -179,7 +183,8 @@ class DetailFragment : Fragment() {
     }
 
     private fun setupViewModel(mangaCover: MangaCover) {
-        detailViewModel.getMangaChapters(mangaCover.id)
+        detailViewModel.getMangaChaptersFromRemote(mangaCover.id)
+        detailViewModel.getMangaChaptersFromLocal(mangaCover.id)
         detailViewModel.getRelatedManga(mangaCover.category.shuffled().mapNotNull { it.first }.take(2))
 
         viewLifecycleOwner.lifecycleScope.launch {

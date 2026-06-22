@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.RyuDex.domain.usecase.CancelDownloadMangaUseCase
 import com.example.RyuDex.domain.usecase.GetMangaChapterListUseCase
+import com.example.RyuDex.domain.usecase.GetMangaChaptersByIdFromLocalUseCase
 import com.example.RyuDex.domain.usecase.GetMangaListFromTagUseCase
 import com.example.RyuDex.domain.usecase.RequestDownloadMangaUseCase
 import com.example.RyuDex.model.MangaCover
@@ -21,7 +22,8 @@ import javax.inject.Inject
 class DetailViewModel @Inject constructor(
     private val getMangaChapterListUseCase: GetMangaChapterListUseCase,
     private val getMangaListFromTagsUseCase: GetMangaListFromTagUseCase,
-    private val requestDownloadMangaUseCase: RequestDownloadMangaUseCase
+    private val requestDownloadMangaUseCase: RequestDownloadMangaUseCase,
+    private val getMangaChaptersByIdFromLocalUseCase: GetMangaChaptersByIdFromLocalUseCase
 ): ViewModel() {
     private val _mangaChaptersStateDTO = MutableStateFlow<UiState<List<MangaChapterDTO>>>(UiState.Loading)
     val mangaChaptersState = _mangaChaptersStateDTO.asStateFlow()
@@ -30,7 +32,7 @@ class DetailViewModel @Inject constructor(
     val relatedMangaState = _relatedMangaState.asStateFlow()
 
 
-    fun getMangaChapters(id:String){
+    fun getMangaChaptersFromRemote(id:String){
         viewModelScope.launch {
             _mangaChaptersStateDTO.value = UiState.Loading
             val response = getMangaChapterListUseCase(id)
@@ -39,6 +41,14 @@ class DetailViewModel @Inject constructor(
             }.onFailure { exception ->
                 _mangaChaptersStateDTO.value = UiState.Error(exception?.message?:"Unknown Error")
             }
+        }
+    }
+
+    fun getMangaChaptersFromLocal(id:String){
+        viewModelScope.launch {
+            _mangaChaptersStateDTO.value = UiState.Loading
+            val data = getMangaChaptersByIdFromLocalUseCase(id)
+            _mangaChaptersStateDTO.value = UiState.Success(data)
         }
     }
 
